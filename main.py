@@ -16,6 +16,10 @@ class Item(BaseModel):
     price :float
     tax : float | None = None
 
+class User(BaseModel):
+    username: str
+    full_name: str | None = None
+
 app = FastAPI()
 
 @app.get("/")
@@ -29,8 +33,8 @@ async def items( item_id: Annotated[int, Path(title="The ID of the item to get",
 
 
 @app.post("/items/")
-async def create_item(item:Item):
-    return item
+async def create_item(item:Item ,user: User):
+    return item , user
 
 @app.get("/models/{model_name}")
 async def get_model(model_name: ModelName):
