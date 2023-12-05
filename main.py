@@ -34,6 +34,18 @@ class User(BaseModel):
     username: str
     full_name: str | None = None
 
+    model_config = {
+        "json_schema_extra": {
+            "examples": [
+                {
+                    "username": "Foo",
+                    "full_name": "Bar"
+                   
+                }
+            ]
+        }
+    }
+
 
 app = FastAPI()
 
