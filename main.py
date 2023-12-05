@@ -1,5 +1,6 @@
 from enum import Enum
-from fastapi import FastAPI
+from typing import Annotated
+from fastapi import FastAPI, Path, Query
 from pydantic import BaseModel
 
 
@@ -23,7 +24,7 @@ async def root():
 
 
 @app.get('/items/{item_id}')
-async def items(item_id : int , needy: str| None = None):
+async def items( item_id: Annotated[int, Path(title="The ID of the item to get", ge=0, le=1000)] , needy: str| None = None):
     return {"item_id": item_id,"needy": needy}
 
 
