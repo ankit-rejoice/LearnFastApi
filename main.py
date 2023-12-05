@@ -28,5 +28,5 @@ async def root():
 
 
 @app.get('/items/{item_id}')
-async def items(item_id : int):
-    return {"item_id": item_id,}
+async def items(item_id : int , needy: str| None = None):
+    return {"item_id": item_id,"needy": needy}
